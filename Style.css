@@ -1,1 +1,18 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#map {
+  height: 60vh;
+}
+
+#stop-info {
+  padding: 1rem;
+}
+
+#stop-image {
+  max-width: 100%;
+  height: auto;
+}
 
