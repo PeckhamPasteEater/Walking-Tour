@@ -70,6 +70,8 @@ if ("geolocation" in navigator) {
 }
 
 // Service worker
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
+// TEMPORARILY DISABLED FOR DEBUGGING
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker.register("service-worker.js");
+// }
+
