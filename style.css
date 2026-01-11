@@ -15,7 +15,10 @@ header {
 }
 
 #map {
-  height: 70vh;
+  height: calc(100vh - 120px);
+  width: 100%;
+}
+
 }
 
 #info-panel {
