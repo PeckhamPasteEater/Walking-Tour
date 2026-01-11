@@ -1,13 +1,8 @@
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open("tour-cache").then(cache =>
-      cache.addAll([
-        "./",
-        "index.html",
-        "style.css",
-        "script.js",
-        "tourData.js"
-      ])
-    )
+self.addEventListener("notificationclick", event => {
+  const locationId = event.notification.data;
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow(`index.html#${locationId}`)
   );
 });
