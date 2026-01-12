@@ -144,9 +144,21 @@ if ("serviceWorker" in navigator) {
 /*----button handler----*/
 document
   .getElementById("enable-notifications")
-  .addEventListener("click", () => {
-    forceNotification();
+  .addEventListener("click", async () => {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== "granted") {
+      alert("Notifications not granted");
+      return;
+    }
+
+    const reg = await navigator.serviceWorker.ready;
+
+    reg.showNotification("Hidden History Test", {
+      body: "Notifications are now working."
+    });
   });
+
 
 
 /*----Test stuff---*/
