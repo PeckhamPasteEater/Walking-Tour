@@ -77,34 +77,21 @@ document.getElementById("search").addEventListener("input", e => {
 /* ---------- NOTIFICATIONS ---------- */
 
 async function notify(loc) {
-  if (!("serviceWorker" in navigator)) return;
+  if (!notificationsEnabled) return;
   if (notified.has(loc.id)) return;
 
   notified.add(loc.id);
 
   const reg = await navigator.serviceWorker.ready;
+
   reg.showNotification("Hidden History Nearby", {
     body: loc.title,
     data: loc.id
   });
 }
 
+
 /* ---------- LOCATION TRACKING ---------- */
-
-if ("geolocation" in navigator) {
-  navigator.geolocation.watchPosition(
-    pos => {
-      const user = [pos.coords.latitude, pos.coords.longitude];
-
-      locations.forEach(loc => {
-        const dist = map.distance(user, [loc.lat, loc.lng]);
-        if (dist < 50) notify(loc);
-      });
-    },
-    null,
-    { enableHighAccuracy: true }
-  );
-}
 
 let userMarker;
 
@@ -113,6 +100,7 @@ if ("geolocation" in navigator) {
     pos => {
       const user = [pos.coords.latitude, pos.coords.longitude];
 
+      // Show user location on map
       if (!userMarker) {
         userMarker = L.circleMarker(user, {
           radius: 6,
@@ -124,13 +112,23 @@ if ("geolocation" in navigator) {
         userMarker.setLatLng(user);
       }
 
+      // Check proximity to locations
       locations.forEach(loc => {
         const dist = map.distance(user, [loc.lat, loc.lng]);
-        if (dist < 50) notify(loc);
+
+        if (dist <= 50) {
+          notify(loc);
+        }
       });
     },
-    null,
-    { enableHighAccuracy: true }
+    err => {
+      console.error("Geolocation error", err);
+    },
+    {
+      enableHighAccuracy: true,
+      maximumAge: 10000,
+      timeout: 10000
+    }
   );
 }
 
