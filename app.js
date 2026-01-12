@@ -141,12 +141,13 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
 
+/*----button handler----*/
 document
   .getElementById("enable-notifications")
-  .addEventListener("click", async () => {
-    const permission = await Notification.requestPermission();
-    alert("Notification permission: " + permission);
+  .addEventListener("click", () => {
+    forceNotification();
   });
+
 
 /*----Test stuff---*/
 async function forceNotification() {
