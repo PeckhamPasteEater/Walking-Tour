@@ -98,6 +98,35 @@ if ("geolocation" in navigator) {
   );
 }
 
+let userMarker;
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.watchPosition(
+    pos => {
+      const user = [pos.coords.latitude, pos.coords.longitude];
+
+      if (!userMarker) {
+        userMarker = L.circleMarker(user, {
+          radius: 6,
+          color: "#007aff",
+          fillColor: "#007aff",
+          fillOpacity: 1
+        }).addTo(map);
+      } else {
+        userMarker.setLatLng(user);
+      }
+
+      locations.forEach(loc => {
+        const dist = map.distance(user, [loc.lat, loc.lng]);
+        if (dist < 50) notify(loc);
+      });
+    },
+    null,
+    { enableHighAccuracy: true }
+  );
+}
+
+
 /* ---------- SERVICE WORKER ---------- */
 
 if ("serviceWorker" in navigator) {
