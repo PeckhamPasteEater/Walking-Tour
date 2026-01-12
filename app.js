@@ -138,7 +138,7 @@ if ("geolocation" in navigator) {
 /* ---------- SERVICE WORKER ---------- */
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
+  navigator.serviceWorker.register("./service-worker.js");
 }
 
 /*----button handler----*/
