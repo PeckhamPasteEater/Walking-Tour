@@ -3,13 +3,13 @@ let notified = new Set();
 const map = L.map("map").setView([locations[0].lat, locations[0].lng], 15);
 
 L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
   {
     maxZoom: 19,
-    attribution: "© OpenStreetMap contributors",
-    crossOrigin: true
+    attribution: "© OpenStreetMap © CARTO"
   }
 ).addTo(map);
+
 
 
 const markers = {};
