@@ -1,8 +1,8 @@
 let notified = new Set();
 
-//const map = L.map("map").setView([locations[0].lat, locations[0].lng], 15);
-const map = L.map("map").setView([37.38323, -122.09449], 13);
+/* ---------- MAP SETUP ---------- */
 
+const map = L.map("map");
 
 L.tileLayer(
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -12,21 +12,36 @@ L.tileLayer(
   }
 ).addTo(map);
 
-
+/* ---------- MARKERS ---------- */
 
 const markers = {};
+const bounds = [];
 
 locations.forEach(loc => {
+  // Safety check
+  if (typeof loc.lat !== "number" || typeof loc.lng !== "number") return;
+
   const marker = L.marker([loc.lat, loc.lng]).addTo(map);
   marker.on("click", () => openInfo(loc));
+
   markers[loc.id] = marker;
+  bounds.push([loc.lat, loc.lng]);
 });
 
-// Info panel
+/* Zoom map to show ALL pins */
+if (bounds.length > 0) {
+  map.fitBounds(bounds, { padding: [40, 40] });
+} else {
+  // Fallback if no locations load
+  map.setView([51.505, -0.09], 13);
+}
+
+/* ---------- INFO PANEL ---------- */
+
 function openInfo(loc) {
   document.getElementById("info-title").textContent = loc.title;
   document.getElementById("info-description").textContent = loc.description;
-  document.getElementById("info-image").src = loc.image;
+  document.getElementById("info-image").src = loc.image || "";
   document.getElementById("info-panel").classList.remove("hidden");
 }
 
@@ -34,19 +49,25 @@ function closeInfo() {
   document.getElementById("info-panel").classList.add("hidden");
 }
 
-// Search
+/* ---------- SEARCH ---------- */
+
 document.getElementById("search").addEventListener("input", e => {
   const q = e.target.value.toLowerCase();
+
   locations.forEach(loc => {
+    const marker = markers[loc.id];
+    if (!marker) return;
+
     if (loc.title.toLowerCase().includes(q)) {
-      markers[loc.id].addTo(map);
+      marker.addTo(map);
     } else {
-      map.removeLayer(markers[loc.id]);
+      map.removeLayer(marker);
     }
   });
 });
 
-// Notifications
+/* ---------- NOTIFICATIONS ---------- */
+
 async function notify(loc) {
   if (!("serviceWorker" in navigator)) return;
   if (notified.has(loc.id)) return;
@@ -60,20 +81,25 @@ async function notify(loc) {
   });
 }
 
-// Location tracking
-if ("geolocation" in navigator) {
-  navigator.geolocation.watchPosition(pos => {
-    const user = [pos.coords.latitude, pos.coords.longitude];
+/* ---------- LOCATION TRACKING ---------- */
 
-    locations.forEach(loc => {
-      const dist = map.distance(user, [loc.lat, loc.lng]);
-      if (dist < 50) notify(loc);
-    });
-  }, null, { enableHighAccuracy: true });
+if ("geolocation" in navigator) {
+  navigator.geolocation.watchPosition(
+    pos => {
+      const user = [pos.coords.latitude, pos.coords.longitude];
+
+      locations.forEach(loc => {
+        const dist = map.distance(user, [loc.lat, loc.lng]);
+        if (dist < 50) notify(loc);
+      });
+    },
+    null,
+    { enableHighAccuracy: true }
+  );
 }
 
-// Service worker
-if ("serviceWorker" in navigator) {
-   navigator.serviceWorker.register("service-worker.js");
- }
+/* ---------- SERVICE WORKER ---------- */
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
