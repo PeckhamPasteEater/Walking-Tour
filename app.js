@@ -100,7 +100,7 @@ if ("geolocation" in navigator) {
 
 /* ---------- SERVICE WORKER ---------- */
 
-/*if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
-*/
+
