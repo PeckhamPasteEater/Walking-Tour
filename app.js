@@ -142,22 +142,25 @@ if ("serviceWorker" in navigator) {
 }
 
 /*----button handler----*/
+let notificationsEnabled = false;
+
 document
   .getElementById("enable-notifications")
   .addEventListener("click", async () => {
     const permission = await Notification.requestPermission();
 
     if (permission !== "granted") {
-      alert("Notifications not granted");
+      alert("Notifications are disabled.");
       return;
     }
 
-    const reg = await navigator.serviceWorker.ready;
+    notificationsEnabled = true;
 
-    reg.showNotification("Hidden History Test", {
-      body: "Notifications are now working."
-    });
+    document.getElementById("enable-notifications").style.display = "none";
+
+    alert("Nearby location alerts are now enabled.");
   });
+
 
 
 
