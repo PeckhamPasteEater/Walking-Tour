@@ -104,3 +104,10 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
 
+document
+  .getElementById("enable-notifications")
+  .addEventListener("click", async () => {
+    const permission = await Notification.requestPermission();
+    alert("Notification permission: " + permission);
+  });
+
