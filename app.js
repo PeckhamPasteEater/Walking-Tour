@@ -126,9 +126,11 @@ if ("geolocation" in navigator) {
       locations.forEach(loc => {
         const dist = map.distance(user, [loc.lat, loc.lng]);
 
-        if (dist <= 50) {
-          notify(loc);
-        }
+       if (dist < 50) {
+      notify(loc);
+      markVisited(loc);
+      }
+
       });
     },
     err => {
@@ -203,6 +205,11 @@ document.getElementById("start-app").addEventListener("click", async () => {
     await Notification.requestPermission();
   }
 
+  document
+  .getElementById("open-visited")
+  .addEventListener("click", openVisited);
+
+  
   // Trigger location permission
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(() => {}, () => {});
@@ -211,6 +218,44 @@ document.getElementById("start-app").addEventListener("click", async () => {
   // Hide splash
   document.getElementById("splash").style.display = "none";
 });
+
+function markVisited(loc) {
+  const visited = getVisited();
+  if (visited.includes(loc.id)) return;
+
+  visited.push(loc.id);
+  saveVisited(visited);
+}
+
+// visited list UI
+
+function openVisited() {
+  const list = document.getElementById("visited-list");
+  list.innerHTML = "";
+
+  const visitedIds = getVisited();
+
+  visitedIds.forEach(id => {
+    const loc = locations.find(l => l.id === id);
+    if (!loc) return;
+
+    const li = document.createElement("li");
+    li.textContent = loc.title;
+    li.onclick = () => {
+      map.setView([loc.lat, loc.lng], 17);
+      openInfo(loc);
+      closeVisited();
+    };
+
+    list.appendChild(li);
+  });
+
+  document.getElementById("visited-panel").classList.remove("hidden");
+}
+
+function closeVisited() {
+  document.getElementById("visited-panel").classList.add("hidden");
+}
 
 
 
