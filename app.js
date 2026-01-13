@@ -1,3 +1,13 @@
+const VISITED_KEY = "hidden-history-visited";
+
+function getVisited() {
+  return JSON.parse(localStorage.getItem(VISITED_KEY)) || [];
+}
+
+function saveVisited(list) {
+  localStorage.setItem(VISITED_KEY, JSON.stringify(list));
+}
+
 let notified = new Set();
 
 if (location.hash) {
