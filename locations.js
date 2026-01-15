@@ -24,5 +24,77 @@ const locations = [
     lng: -122.09449,
     description: "Test",
     image: ""
+  },
+  {
+    id: "elizabeth_gamble_garden",
+    title: "Elizabeth F. Gamble Garden",
+    lat: 37.4400122,
+    lng: -122.1482255,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "hp_garage",
+    title: "HP Garage",
+    lat: 37.44307,
+    lng: -122.15481,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "roth_building",
+    title: "Roth Building (now Palo Alto History Museum)",
+    lat: 37.44361,
+    lng: -122.15722,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "stanford_theatre",
+    title: "Stanford Theatre",
+    lat: 37.4450694,
+    lng: -122.16270,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "kee_house",
+    title: "Kee House",
+    lat: 37.4245556,
+    lng: -122.1474444,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "squire_house",
+    title: "Squire House",
+    lat: 37.453056,
+    lng: -122.153056,
+    description: "Placeholder. In collaboration with the Museum of American Heritage.",
+    image: ""
+  },
+  {
+    id: "hanna_house",
+    title: "Hanna House",
+    lat: 37.4160139,
+    lng: -122.1635528,
+    description: "Placeholder. In collaboration with the Museum of American Heritage",
+    image: ""
+  },
+  {
+    id: "palo_alto_tower_well",
+    title: "Palo Alto Tower Well",
+    lat: 37.4459921,
+    lng: -122.1673342,
+    description: "Placeholder. In collaboration with the Museum of American Heritage",
+    image: ""
+  },
+  {
+    id: "frenchmans_tower",
+    title: "Frenchman's Tower",
+    lat: 37.396311,
+    lng: -122.161784,
+    description: "Placeholder.",
+    image: ""
   }
 ];
