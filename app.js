@@ -18,11 +18,11 @@ let notificationsEnabled = false;
 
 const map = L.map("map");
 
-L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+const tileLayer = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
   {
     maxZoom: 19,
-    attribution: "© OpenStreetMap contributors"
+    attribution: "© OpenStreetMap © CARTO"
   }
 ).addTo(map);
 
