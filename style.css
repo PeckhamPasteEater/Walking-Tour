@@ -1,226 +1,175 @@
+/* ---------- ROOT THEME ---------- */
+
 :root {
-  --bg: #f6f7fb;
-  --surface: #ffffff;
-  --primary: #4f46e5;     /* Indigo */
-  --secondary: #06b6d4;   /* Cyan */
-  --accent: #22c55e;     /* Green */
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: #e5e7eb;
-  --radius: 16px;
-  --shadow: 0 10px 25px rgba(0,0,0,0.08);
+  --bg-paper: #f5f1e8;
+  --ink-dark: #1f2933;
+  --ink-muted: #5b6470;
+  --accent-brass: #9c7c38;
+  --accent-deep: #2c3e50;
+  --panel-bg: #ffffffee;
+  --shadow-soft: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-/* ---------- RESET ---------- */
-* {
-  box-sizing: border-box;
-}
+/* ---------- GLOBAL ---------- */
 
 html, body {
   height: 100%;
   margin: 0;
-  background: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
-  color: var(--text);
-}
-
-/* ---------- HEADER ---------- */
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--secondary)
-  );
-  color: white;
-}
-
-.app-header h1 {
-  font-size: 1rem;
-  margin: 0;
-  flex: 1;
-  font-weight: 600;
-}
-
-/* ---------- SEARCH ---------- */
-#search {
-  flex: 2;
-  padding: 0.55rem 0.75rem;
-  border-radius: 999px;
-  border: none;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-/* ---------- BUTTONS ---------- */
-.btn {
-  border-radius: 999px;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.85rem;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-.btn:active {
-  transform: scale(0.96);
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: white;
-  box-shadow: var(--shadow);
-}
-
-.btn-secondary {
-  background: #f1f5f9;
-  color: var(--text);
-}
-
-.btn-ghost {
-  background: rgba(255,255,255,0.2);
-  color: white;
-}
-
-/* ---------- NOTIFICATION CTA ---------- */
-#enable-notifications {
-  margin: 0.75rem;
-  width: calc(100% - 1.5rem);
-}
-
-/* ---------- MAP ---------- */
-#map {
-  height: calc(100vh - 116px);
-  width: 100%;
-}
-
-/* ---------- INFO PANEL ---------- */
-#info-panel {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: var(--surface);
-  padding: 1rem;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
-  box-shadow: var(--shadow);
-  z-index: 1000;
-  animation: slideUp 0.25s ease;
-}
-
-#info-panel h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
-}
-
-#info-image {
-  width: 100%;
-  border-radius: var(--radius);
-  margin-bottom: 0.5rem;
-}
-
-/* ---------- VISITED PANEL ---------- */
-#visited-panel {
-  position: fixed;
-  inset: 0;
-  background: var(--surface);
-  padding: 1rem;
-  z-index: 2000;
-  animation: fadeIn 0.2s ease;
-}
-
-#visited-panel h2 {
-  margin-top: 0;
-}
-
-#visited-list {
-  list-style: none;
   padding: 0;
+  background: var(--bg-paper);
+  color: var(--ink-dark);
+  font-family: "Source Sans 3", system-ui, sans-serif;
 }
 
-#visited-list li {
-  padding: 0.75rem;
-  border-radius: var(--radius);
-  margin-bottom: 0.5rem;
-  background: #f8fafc;
-}
-
-#visited-list li small {
-  color: var(--muted);
-}
-
-/* ---------- UTIL ---------- */
-.hidden {
-  display: none;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ---------- ANIMATIONS ---------- */
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ---------- SPLASH SCREEN ---------- */
+/* ---------- SPLASH ---------- */
 
 #splash {
   position: fixed;
   inset: 0;
-  z-index: 5000;
-
-  background: linear-gradient(135deg, #f5f1e8, #e6dcc6);
+  background: linear-gradient(
+    to bottom,
+    #f5f1e8,
+    #e9e3d6
+  );
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-
-  text-align: center;
+  align-items: center;
   padding: 2rem;
+  z-index: 2000;
+  text-align: center;
 }
 
 #splash img {
-  width: 140px;
-  height: 140px;
+  width: 120px;
   margin-bottom: 1.5rem;
 }
 
 #splash p {
   max-width: 420px;
   font-size: 1rem;
-  line-height: 1.5;
-  color: #333;
+  color: var(--ink-muted);
+  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
-#start-app {
-  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+#splash button {
+  background: var(--accent-deep);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------- HEADER ---------- */
+
+.app-header {
+  background: var(--panel-bg);
+  backdrop-filter: blur(6px);
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow-soft);
+  z-index: 1000;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.app-header h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.1rem;
+  margin: 0;
+  flex: 1;
+}
+
+#search {
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- BUTTONS ---------- */
+
+button {
+  font-family: inherit;
+}
+
+#open-visited,
+#enable-notifications {
+  background: var(--accent-brass);
   color: white;
   border: none;
   border-radius: 999px;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
 }
 
-#start-app:active {
-  transform: scale(0.98);
+/* ---------- MAP ---------- */
+
+#map {
+  height: calc(100vh - 60px);
+  width: 100%;
 }
 
+/* ---------- INFO PANEL ---------- */
+
+#info-panel,
+#visited-panel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 55%;
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-soft);
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 1500;
+}
+
+#info-title,
+#visited-panel h2 {
+  font-family: "Libre Baskerville", serif;
+  margin-top: 0;
+}
+
+#info-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------- VISITED LIST ---------- */
+
+#visited-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#visited-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+#visited-list li strong {
+  font-family: "Libre Baskerville", serif;
+}
+
+/* ---------- LEAFLET TWEAKS ---------- */
+
+.leaflet-control-attribution {
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
