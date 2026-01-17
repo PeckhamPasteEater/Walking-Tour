@@ -50,7 +50,13 @@ locations.forEach(loc => {
   // Safety check
   if (typeof loc.lat !== "number" || typeof loc.lng !== "number") return;
 
-  const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+  const visited = getVisited()[loc.id];
+
+  const marker = L.marker(
+  [loc.lat, loc.lng],
+  { icon: visited ? visitedIcon : defaultIcon }
+  ).addTo(map);
+
   marker.on("click", () => openInfo(loc));
 
   markers[loc.id] = marker;
