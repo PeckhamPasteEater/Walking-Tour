@@ -53,15 +53,24 @@ locations.forEach(loc => {
   const visited = getVisited()[loc.id];
 
   const marker = L.marker(
-  [loc.lat, loc.lng],
-  { icon: visited ? visitedIcon : defaultIcon }
+    [loc.lat, loc.lng],
+    { icon: visited ? visitedIcon : defaultIcon }
   ).addTo(map);
+
+  // 👇 ADD THIS PART (title under each pin)
+  marker.bindTooltip(loc.title, {
+    permanent: true,
+    direction: "bottom",
+    offset: [0, 10],
+    className: "pin-label"
+  });
 
   marker.on("click", () => openInfo(loc));
 
   markers[loc.id] = marker;
   bounds.push([loc.lat, loc.lng]);
 });
+
 
 /* Zoom map to show ALL pins */
 if (bounds.length > 0) {
