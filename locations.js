@@ -96,5 +96,37 @@ const locations = [
     lng: -122.161784,
     description: "Placeholder.",
     image: ""
+  },
+  {
+    id: "okeefe_site",
+    title: "O'Keefe Ohlone Settlement",
+    lat: 37.3718,
+    lng: -122.1152,
+    description: "Placeholder. In collaboration with Hidden Villa",
+    image: ""
+  },
+  {
+    id: "russian_ridge_bedrocks",
+    title: "Russian Ridge Bedrocks",
+    lat: 37.3153,
+    lng: -122.1882,
+    description: "Placeholder. In collaboration with Hidden Villa",
+    image: ""
+  },
+  {
+    id: "duveneck_house",
+    title: "Duvenecks Part 3: The Duveneck House",
+    lat: 37.351234,
+    lng: -122.161021,
+    description: "Part 3 in a series of sites celebrating the founders of Hidden Villa, the Duvenecks. Read preceding sites for complete narrative. The Duvenecks spent any spare time that they had outdoors. In their Ford Model T, they would cruise through the then-treacherous Santa Cruz mountains, camping on hillsides and in clearings. They had always dreamed of owning their own open space. In 1924, they found it on a routine drive down Moody Road. Spying the familiar metal flags as well as a 'for sale' sign, they were intrigued: they turned in, and discovered the thousand-acre lot that would serve both as their home and a setting for some of the Bay Area's most significant history: Hidden Villa. Amazed by its pristine, unblemished nature, the Duvenecks purchased the lot. They completed the Duveneck House in 1929, completed in a Spanish colonial style, and laden with intricate ironwork. In collaboration with Hidden Villa",
+    image: ""
+  },
+  {
+    id: "hv_hostel",
+    title: "Hidden Villa Hostel",
+    lat: 37.351361,
+    lng: -122.160987,
+    description: "Part 3 in a series of sites celebrating the founders of Hidden Villa, the Duvenecks. Read preceding sites for complete narrative. The Duvenecks spent any spare time that they had outdoors. In their Ford Model T, they would cruise through the then-treacherous Santa Cruz mountains, camping on hillsides and in clearings. They had always dreamed of owning their own open space. In 1924, they found it on a routine drive down Moody Road. Spying the familiar metal flags as well as a 'for sale' sign, they were intrigued: they turned in, and discovered the thousand-acre lot that would serve both as their home and a setting for some of the Bay Area's most significant history: Hidden Villa. Amazed by its pristine, unblemished nature, the Duvenecks purchased the lot. They completed the Duveneck House in 1929, completed in a Spanish colonial style, and laden with intricate ironwork. In collaboration with Hidden Villa",
+    image: ""
   }
 ];
